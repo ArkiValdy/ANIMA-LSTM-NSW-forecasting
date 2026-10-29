@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="1800">
+<title>NSW Price Live</title>
+<style>
+  body { margin: 0; background: #fff; color: #222; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
+  h1 { font-size: 20px; font-weight: 600; margin: 0 0 4px; }
+  p { margin: 0 0 16px; color: #666; font-size: 13px; }
+  .btns { margin-bottom: 8px; }
+  .btns button { font: inherit; font-size: 13px; padding: 4px 12px; border: 1px solid #ccc; background: #fff; border-radius: 4px; cursor: pointer; }
+  .btns button.on { background: #222; color: #fff; border-color: #222; }
+  .chart { position: relative; height: 70vh; min-height: 320px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>NSW day-ahead electricity price ($/MWh)</h1>
+  <p id="sub"></p>
+  <div class="btns"><button data-days="2" class="on">Last 2 days</button> <button data-days="7">Last 7 days</button> <button data-days="0">All</button></div>
+  <div class="chart"><canvas id="c"></canvas></div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const DATA = /*DATA*/;
+
+const mae = (k) => {
+  const r = DATA.rows.filter(d => d[k] != null && d.actual != null);
+  return r.length ? (r.reduce((s, d) => s + Math.abs(d[k] - d.actual), 0) / r.length).toFixed(1) : "–";
+};
+document.getElementById("sub").textContent =
+  `Updated ${DATA.updated} · MAE so far: my model $${mae("model")}, AEMO pre-dispatch $${mae("aemo")}`;
+
+const line = (rows, label, key, color, dash) => ({
+  label, borderColor: color, backgroundColor: color, borderWidth: 2, borderDash: dash || [],
+  pointRadius: 0, tension: 0.2, spanGaps: false,
+  data: rows.map(d => d[key]),
+});
+
+const chart = new Chart(document.getElementById("c"), {
+  type: "line",
+  data: { labels: [], datasets: [] },
+  options: {
+    responsive: true, maintainAspectRatio: false, animation: false,
+    interaction: { mode: "index", intersect: false },
+    plugins: {
+      legend: { position: "top", labels: { boxWidth: 14, boxHeight: 2 } },
+      tooltip: { callbacks: { label: c => c.raw == null ? null : `${c.dataset.label}: $${c.raw.toFixed(2)}` } },
+    },
+    scales: {
+      x: { ticks: { maxTicksLimit: 12, maxRotation: 0, callback(v) { const s = this.getLabelForValue(v); return s.slice(5, 10) + " " + s.slice(11); } },
+           grid: { color: "#eee" } },
+      y: { title: { display: true, text: "$/MWh" }, grid: { color: "#eee" } },
+    },
+  },
+});
+
+function show(days) {
+  const rows = days ? DATA.rows.slice(-48 * days) : DATA.rows;
+  chart.data.labels = rows.map(d => d.t);
+  chart.data.datasets = [
+    line(rows, "Actual", "actual", "#111111"),
+    line(rows, "My model (hybrid)", "model", "#2563eb"),
+    line(rows, "AEMO pre-dispatch", "aemo", "#ea580c", [6, 4]),
+  ];
+  chart.update();
+  document.querySelectorAll(".btns button").forEach(b => b.classList.toggle("on", +b.dataset.days === days));
+}
+document.querySelectorAll(".btns button").forEach(b => b.onclick = () => show(+b.dataset.days));
+show(2);
+</script>
+</body>
+</html>

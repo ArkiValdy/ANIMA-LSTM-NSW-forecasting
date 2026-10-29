@@ -1,0 +1,551 @@
+<title>NSW Price Outlook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a control-room board. Live region strip on top, tomorrow's call and
+   the flows beside it, then the big NSW timeline, then the evidence (tables). */
+:root {
+  --bg: #eef1f6; --panel: #ffffff; --ink: #0e1726; --ink-2: #47536a; --muted: #6f7b91;
+  --line: #d9dfe8; --grid: #e8ecf2; --shade: rgba(42,120,214,.07); --hover: #f4f7fb;
+  --accent: #2a78d6;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --actual: #0e1726;
+  --warn-bg: #fff2d6; --warn-fg: #7a4a00; --crit-bg: #fde3e3; --crit-fg: #9b1c1c;
+  --info-bg: #e2eefc; --info-fg: #1c4f95; --calm-bg: #edf0f4; --calm-fg: #47536a;
+  --f-display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0a111d; --panel: #111b2c; --ink: #eaf0f8; --ink-2: #b2bdd0; --muted: #8392ab;
+  --line: #233250; --grid: #1a2740; --shade: rgba(57,135,229,.10); --hover: #16233a;
+  --accent: #3987e5;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --actual: #eaf0f8;
+  --warn-bg: #3a2a08; --warn-fg: #f5c46a; --crit-bg: #3f1616; --crit-fg: #ff9c9c;
+  --info-bg: #13294a; --info-fg: #9ec5f4; --calm-bg: #1a2740; --calm-fg: #b2bdd0;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0a111d; --panel: #111b2c; --ink: #eaf0f8; --ink-2: #b2bdd0; --muted: #8392ab;
+  --line: #233250; --grid: #1a2740; --shade: rgba(57,135,229,.10); --hover: #16233a;
+  --accent: #3987e5;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --actual: #eaf0f8;
+  --warn-bg: #3a2a08; --warn-fg: #f5c46a; --crit-bg: #3f1616; --crit-fg: #ff9c9c;
+  --info-bg: #13294a; --info-fg: #9ec5f4; --calm-bg: #1a2740; --calm-fg: #b2bdd0;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 14px/1.5 var(--f-body); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: 20px 40px; display: grid; gap: 18px; }
+@media (max-width: 520px) { .wrap { padding-inline: 16px; } }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; text-wrap: balance; letter-spacing: .01em; }
+h1 { font-size: 30px; font-weight: 700; line-height: 1.1; }
+h2 { font-size: 19px; font-weight: 600; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font: 600 11px/1.2 var(--f-body); text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+.sub { color: var(--ink-2); }
+.small { font-size: 12.5px; color: var(--muted); }
+
+header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 24px; }
+header .meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12.5px; color: var(--ink-2); }
+header .meta b { font-weight: 600; color: var(--ink); }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--s3); margin-right: 6px; vertical-align: 1px; }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; margin-bottom: 12px; }
+
+/* Region strip */
+.regions { display: grid; grid-template-columns: 1.35fr repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 1000px) { .regions { grid-template-columns: repeat(3, minmax(0, 1fr)); } .regions > :first-child { grid-column: span 2; } }
+@media (max-width: 560px) { .regions { grid-template-columns: repeat(2, minmax(0, 1fr)); } .regions > :first-child { grid-column: 1 / -1; } }
+.region { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px 10px; display: grid; gap: 4px; min-width: 0; }
+.region.is-nsw { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.region-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.region-code { font: 600 11px/1.2 var(--f-body); text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+.region-price { font: 500 24px/1.15 var(--f-mono); font-variant-numeric: tabular-nums; }
+.region-price small { font: 400 12px var(--f-body); color: var(--muted); margin-left: 3px; }
+.region-dem { font-size: 12.5px; color: var(--ink-2); }
+.spark { width: 100%; height: 34px; display: block; }
+
+.chip { display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px; border-radius: 999px; font: 600 11px/18px var(--f-body); white-space: nowrap; }
+.chip.calm { background: var(--calm-bg); color: var(--calm-fg); }
+.chip.info { background: var(--info-bg); color: var(--info-fg); }
+.chip.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.chip.crit { background: var(--crit-bg); color: var(--crit-fg); }
+
+/* Tomorrow + flows */
+.split { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; }
+@media (max-width: 900px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.hero { display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: flex-end; margin-bottom: 14px; }
+.hero-num { font: 500 46px/1 var(--f-mono); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.hero-num small { font: 400 15px var(--f-body); color: var(--muted); margin-left: 4px; letter-spacing: 0; }
+.hero-side { display: grid; gap: 2px; padding-bottom: 4px; }
+.hero-side .num { font-size: 15px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { font: 600 11px/1.3 var(--f-body); text-transform: uppercase; letter-spacing: .07em; color: var(--muted); border-bottom-color: var(--line); }
+td { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+td:first-child { font-family: var(--f-body); }
+tbody tr:hover { background: var(--hover); }
+.key { display: inline-block; width: 14px; height: 0; border-top: 2px solid; vertical-align: middle; margin-right: 8px; }
+.best { font-weight: 600; color: var(--ink); }
+.best::after { content: " ✓"; color: var(--s3); }
+.scroll { overflow-x: auto; }
+.tall { max-height: 420px; overflow-y: auto; }
+.tall thead th { position: sticky; top: 0; background: var(--panel); }
+
+.flows { display: grid; gap: 10px; }
+.flow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; align-items: baseline; }
+.flow-name { font-size: 13px; }
+.flow-name b { font-weight: 600; }
+.flow-mw { font: 500 13px var(--f-mono); font-variant-numeric: tabular-nums; }
+.flow-bar { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: var(--grid); overflow: hidden; }
+.flow-bar span { display: block; height: 100%; border-radius: 3px; background: var(--s1); }
+.flow-bar span.near { background: var(--s4); }
+
+/* Charts */
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { font: 600 12.5px var(--f-body); padding: 5px 12px; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.legend button { display: inline-flex; align-items: center; gap: 7px; font: 500 12.5px var(--f-body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px 3px 9px; cursor: pointer; }
+.legend button[aria-pressed="false"] { color: var(--muted); opacity: .55; }
+.legend svg { width: 22px; height: 8px; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chart { position: relative; width: 100%; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { fill: var(--muted); font: 11px var(--f-body); }
+.chart .axis-label { fill: var(--ink-2); font-weight: 600; }
+.chart .marker-label { fill: var(--ink-2); font-weight: 600; font-size: 11px; }
+.tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 12px; box-shadow: 0 6px 18px rgba(10,17,29,.14); min-width: 170px; z-index: 2; }
+.tip-time { font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+.tip-row { display: flex; justify-content: space-between; gap: 14px; color: var(--ink-2); }
+.tip-row b { font: 500 12px var(--f-mono); color: var(--ink); }
+
+details summary { cursor: pointer; font: 600 13px var(--f-body); color: var(--accent); margin-top: 6px; }
+.notes { display: grid; gap: 6px; font-size: 13px; color: var(--ink-2); max-width: 78ch; }
+.notes p { margin: 0; }
+.empty { padding: 14px; border: 1px dashed var(--line); border-radius: 8px; color: var(--ink-2); font-size: 13px; }
+@media (prefers-reduced-motion: no-preference) { .flow-bar span { transition: width .4s ease; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">New South Wales · NSW1 region · NEM time (AEST)</div>
+      <h1>NSW Price Outlook</h1>
+    </div>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <section aria-labelledby="now-h">
+    <div class="panel-head" style="margin-bottom:8px">
+      <h2 id="now-h">NSW right now</h2>
+      <span class="small" id="now-sub"></span>
+    </div>
+    <div class="regions" id="regions"></div>
+  </section>
+
+  <div class="split">
+    <section class="panel" aria-labelledby="tmr-h">
+      <div class="panel-head">
+        <div>
+          <div class="eyebrow">Day-ahead forecast · NSW1</div>
+          <h2 id="tmr-h"></h2>
+        </div>
+        <span class="small" id="tmr-issued"></span>
+      </div>
+      <div class="hero" id="hero"></div>
+      <div class="scroll"><table id="tmr-table"></table></div>
+      <p class="small" id="tmr-note" style="margin:10px 0 0"></p>
+    </section>
+
+    <section class="panel" aria-labelledby="flow-h">
+      <div class="panel-head">
+        <h2 id="flow-h">NSW interconnectors</h2>
+        <span class="small">MW, share of limit</span>
+      </div>
+      <div class="flows" id="flows"></div>
+    </section>
+  </div>
+
+  <section class="panel" aria-labelledby="nsw-h">
+    <div class="panel-head">
+      <div>
+        <h2 id="nsw-h">NSW: yesterday, today and tomorrow</h2>
+        <span class="small">30-minute periods. Today's remaining periods use AEMO pre-dispatch.</span>
+      </div>
+      <div class="controls">
+        <div class="seg" role="group" aria-label="Measure">
+          <button type="button" id="tgl-price" aria-pressed="true">Price</button>
+          <button type="button" id="tgl-demand" aria-pressed="false">Demand</button>
+        </div>
+      </div>
+    </div>
+    <div class="legend" id="nsw-legend"></div>
+    <div class="chart" id="nsw-chart"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="reg-h">
+    <div class="panel-head">
+      <div>
+        <h2 id="reg-h">NSW today, every 5 minutes</h2>
+        <span class="small">Dispatch intervals so far today</span>
+      </div>
+      <div class="seg" role="group" aria-label="Five-minute measure">
+        <button type="button" id="r-price" aria-pressed="true">Price</button>
+        <button type="button" id="r-demand" aria-pressed="false">Demand</button>
+      </div>
+    </div>
+    <div class="chart" id="reg-chart"></div>
+  </section>
+
+  <div class="split">
+    <section class="panel" aria-labelledby="det-h">
+      <div class="panel-head">
+        <h2 id="det-h">Tomorrow by period</h2>
+        <div class="seg" role="group" aria-label="Table measure">
+          <button type="button" id="tt-price" aria-pressed="true">Price</button>
+          <button type="button" id="tt-demand" aria-pressed="false">Demand</button>
+        </div>
+      </div>
+      <div class="scroll tall"><table id="det-table"></table></div>
+    </section>
+
+    <section class="panel" aria-labelledby="rec-h">
+      <div class="panel-head">
+        <h2 id="rec-h">Track record</h2>
+        <span class="small">Daily RMSE, NSW price ($/MWh)</span>
+      </div>
+      <div id="rec"></div>
+    </section>
+  </div>
+
+  <section class="panel notes" aria-labelledby="how-h">
+    <h2 id="how-h">How this forecast is made</h2>
+    <p>Sources: AEMO NEMWeb 5-minute dispatch (DispatchIS) and pre-dispatch (PredispatchIS) for the NSW1 region today, AEMO aggregated price and demand files for earlier days, and the Open-Meteo forecast for Sydney temperature.</p>
+    <p>AEMO's daily file only runs to the previous midnight. To forecast tomorrow, today is filled with dispatch actuals so far and AEMO pre-dispatch for the rest of the day. The models then train on the past 365 days and forecast all 48 periods of tomorrow.</p>
+    <p><b>Hybrid</b> is the project model: yesterday's profile (seasonal naive) plus an LSTM correction learned from temperature and calendar effects. <b>ARIMA</b> and <b>naive</b> are the baselines. <b>AEMO pre-dispatch</b> is the market operator's own schedule, built from generator bids, and is the benchmark to beat.</p>
+    <p>On live data since July 2026 the naive baseline has been as accurate as the hybrid, so read the spread between the lines as the uncertainty. Price spikes are not predictable from history alone.</p>
+  </section>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+
+const SERIES = {
+  actual:  { label: "Actual", color: "--actual", dash: "" , width: 2 },
+  hybrid:  { label: "Hybrid (ARIMA-LSTM)", color: "--s1", dash: "", width: 2 },
+  aemo_pd: { label: "AEMO pre-dispatch", color: "--s2", dash: "6 4", width: 2 },
+  naive:   { label: "Seasonal naive", color: "--s3", dash: "2 3", width: 2 },
+  arima:   { label: "ARIMA", color: "--s4", dash: "8 3 2 3", width: 2 },
+};
+
+/* ---------- formatting (timestamps are NEM time encoded as UTC) ---------- */
+const DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const DAYS_LONG = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const pad = n => String(n).padStart(2, "0");
+const hhmm = t => { const d = new Date(t); return pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()); };
+const dayShort = t => { const d = new Date(t); return DAYS[d.getUTCDay()] + " " + d.getUTCDate(); };
+const dayLong = s => { const d = new Date(s + "T00:00:00Z"); return DAYS_LONG[d.getUTCDay()] + " " + d.getUTCDate() + " " + MONTHS[d.getUTCMonth()]; };
+const fmtPrice = (v, nd = 2) => v == null ? "–" : (v < 0 ? "−$" : "$") + Math.abs(v).toLocaleString("en-AU", { minimumFractionDigits: nd, maximumFractionDigits: nd });
+const fmtMW = v => v == null ? "–" : Math.round(v).toLocaleString("en-AU");
+const UNIT = { price: { f: v => fmtPrice(v, 0), tip: v => fmtPrice(v, 2), axis: "$/MWh" }, demand: { f: fmtMW, tip: v => fmtMW(v) + " MW", axis: "MW" } };
+const el = (tag, attrs = {}, html = "") => { const e = document.createElement(tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (html) e.innerHTML = html; return e; };
+const svgEl = (tag, attrs = {}) => { const e = document.createElementNS("http://www.w3.org/2000/svg", tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+
+function band(p) {
+  if (p == null) return { cls: "calm", txt: "No data" };
+  if (p < 0) return { cls: "info", txt: "▼ Negative" };
+  if (p >= 1000) return { cls: "crit", txt: "◆ Extreme" };
+  if (p >= 300) return { cls: "warn", txt: "▲ High" };
+  return { cls: "calm", txt: "Normal" };
+}
+
+function stats(s) {
+  let sum = 0, n = 0, min = Infinity, max = -Infinity, at = null;
+  s.v.forEach((v, i) => { if (v == null) return; sum += v; n++; if (v < min) min = v; if (v > max) { max = v; at = s.t[i]; } });
+  return { mean: n ? sum / n : null, min: n ? min : null, max: n ? max : null, at };
+}
+
+/* ---------- header ---------- */
+function renderMeta() {
+  document.getElementById("meta").innerHTML =
+    `<span><span class="dot"></span>Dispatch <b>${DATA.last_dispatch.slice(11, 16)}</b></span>` +
+    `<span>Pre-dispatch run <b>${DATA.pd_run.slice(11)}</b></span>` +
+    `<span>Built <b>${DATA.generated_nem.slice(0, 16).replace("T", " ")}</b></span>`;
+  document.getElementById("now-sub").textContent = `5-minute dispatch · ${dayLong(DATA.today)}`;
+}
+
+/* ---------- region tiles ---------- */
+function sparkline(svg, s, colorVar) {
+  const W = 200, H = 34, pts = s.t.map((t, i) => [t, s.v[i]]).filter(p => p[1] != null);
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("preserveAspectRatio", "none");
+  if (pts.length < 2) return;
+  const t0 = pts[0][0], t1 = pts[pts.length - 1][0];
+  const vs = pts.map(p => p[1]); let lo = Math.min(...vs), hi = Math.max(...vs); if (hi - lo < 1) hi = lo + 1;
+  const x = t => (t - t0) / (t1 - t0) * (W - 4) + 2, y = v => H - 3 - (v - lo) / (hi - lo) * (H - 6);
+  const d = pts.map((p, i) => (i ? "L" : "M") + x(p[0]).toFixed(1) + " " + y(p[1]).toFixed(1)).join("");
+  const area = svgEl("path", { d: d + `L${x(t1).toFixed(1)} ${H}L${x(t0).toFixed(1)} ${H}Z` });
+  area.style.fill = `var(${colorVar})`; area.style.opacity = .12;
+  const line = svgEl("path", { d, fill: "none", "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" });
+  line.style.stroke = `var(${colorVar})`;
+  svg.append(area, line);
+}
+
+function renderNow() {
+  const n = DATA.now, b = band(n.price), host = document.getElementById("regions");
+  const imp = n.net_import;
+  const tiles = [
+    { label: "Spot price", chip: b, html: `${fmtPrice(n.price)}<small>/MWh</small>`, sub: `Interval ending ${DATA.last_dispatch.slice(11, 16)}`, spark: true },
+    { label: "Demand", html: `${fmtMW(n.demand)}<small>MW</small>`, sub: `Peak today <span class="num">${fmtMW(n.peak_demand)}</span> MW at ${hhmm(n.peak_demand_at)}` },
+    { label: "Today's average", html: `${fmtPrice(n.avg_today)}<small>/MWh</small>`, sub: `Low <span class="num">${fmtPrice(n.min_today, 0)}</span> at ${hhmm(n.min_at)}` },
+    { label: "Today's high", chip: band(n.max_today), html: `${fmtPrice(n.max_today, 0)}<small>/MWh</small>`, sub: `5-min interval ending ${hhmm(n.max_at)}` },
+    { label: imp >= 0 ? "Net import" : "Net export", html: `${fmtMW(Math.abs(imp))}<small>MW</small>`, sub: imp >= 0 ? "Flowing into NSW" : "Flowing out of NSW" },
+  ];
+  tiles.forEach((t, i) => {
+    const tile = el("article", { class: "region" + (i === 0 ? " is-nsw" : ""), "aria-label": t.label });
+    tile.innerHTML = `
+      <div class="region-top"><span class="region-code">${t.label}</span>${t.chip ? `<span class="chip ${t.chip.cls}">${t.chip.txt}</span>` : ""}</div>
+      <div class="region-price">${t.html}</div>
+      <div class="small">${t.sub}</div>`;
+    if (t.spark) {
+      const sp = svgEl("svg", { class: "spark", role: "img", "aria-label": `NSW price today, average ${fmtPrice(n.avg_today)}` });
+      sparkline(sp, n.price5, "--s1"); tile.append(sp);
+    }
+    host.append(tile);
+  });
+}
+
+/* ---------- tomorrow ---------- */
+function renderTomorrow() {
+  const p = DATA.nsw.price, d = DATA.nsw.demand;
+  document.getElementById("tmr-h").textContent = dayLong(DATA.tomorrow);
+  document.getElementById("tmr-issued").textContent = `Issued ${p.issued_at.replace("T", " ").slice(0, 16)} local time`;
+  const tomorrowPD = s => { const t0 = Date.parse(DATA.tomorrow + "T00:00:00Z"); const t = [], v = []; s.t.forEach((x, i) => { if (x >= t0) { t.push(x); v.push(s.v[i]); } }); return { t, v }; };
+  const h = stats(p.hybrid), a = stats(tomorrowPD(p.aemo_pd)), dh = stats(d.hybrid);
+  const temps = stats(p.temperature);
+  document.getElementById("hero").innerHTML = `
+    <div><div class="eyebrow">Hybrid model, daily average</div>
+      <div class="hero-num">${fmtPrice(h.mean)}<small>/MWh</small></div></div>
+    <div class="hero-side"><span class="eyebrow">AEMO pre-dispatch</span><span class="num">${fmtPrice(a.mean)}</span></div>
+    <div class="hero-side"><span class="eyebrow">Peak demand</span><span class="num">${fmtMW(dh.max)} MW at ${hhmm(dh.at)}</span></div>
+    <div class="hero-side"><span class="eyebrow">Sydney temp.</span><span class="num">${temps.min.toFixed(0)}–${temps.max.toFixed(0)} °C</span></div>`;
+
+  const rows = [["hybrid", p.hybrid], ["aemo_pd", tomorrowPD(p.aemo_pd)], ["naive", p.naive], ["arima", p.arima]];
+  let html = `<thead><tr><th>Price, $/MWh</th><th>Average</th><th>Min</th><th>Max</th><th>Max at</th></tr></thead><tbody>`;
+  rows.forEach(([k, s]) => {
+    const st = stats(s), m = SERIES[k];
+    html += `<tr><td><span class="key" style="border-top-color:var(${m.color});border-top-style:${m.dash ? "dashed" : "solid"}"></span>${m.label}</td>
+      <td>${fmtPrice(st.mean)}</td><td>${fmtPrice(st.min)}</td><td>${fmtPrice(st.max)}</td><td>${st.at ? hhmm(st.at) : "–"}</td></tr>`;
+  });
+  document.getElementById("tmr-table").innerHTML = html + "</tbody>";
+  document.getElementById("tmr-note").textContent =
+    `Today is ${DATA.today_actual_bins} of 48 periods actual so far; the rest is AEMO pre-dispatch. Times are period start, NEM time.`;
+}
+
+/* ---------- flows ---------- */
+function renderFlows() {
+  const host = document.getElementById("flows");
+  DATA.interconnectors.forEach(f => {
+    const share = f.limit ? Math.min(1, f.mw / f.limit) : 0;
+    const row = el("div", { class: "flow" });
+    row.innerHTML = `<span class="flow-name"><b>${f.name}</b> <span class="small">${f.to === "NSW" ? "import from " + f.from : "export to " + f.to}</span></span>
+      <span class="flow-mw">${fmtMW(f.mw)} MW</span>
+      <div class="flow-bar" role="img" aria-label="${Math.round(share * 100)}% of ${fmtMW(f.limit)} MW limit"><span class="${share > .9 ? "near" : ""}" style="width:${(share * 100).toFixed(1)}%"></span></div>`;
+    host.append(row);
+  });
+  host.append(el("p", { class: "small", style: "margin:4px 0 0" }, "Amber bar: flow above 90% of the current limit."));
+}
+
+/* ---------- line chart ---------- */
+function niceTicks(lo, hi, n) {
+  const span = hi - lo || 1, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => span / s <= n) || 10 * mag;
+  const t = []; for (let v = Math.floor(lo / step) * step; v <= hi + 1e-9; v += step) t.push(+v.toFixed(6));
+  return t;
+}
+
+function lineChart(host, cfg) {
+  host.innerHTML = "";
+  const W = Math.max(300, host.clientWidth), H = cfg.height || (W < 560 ? 260 : 340);
+  const m = { l: W < 560 ? 44 : 60, r: 14, t: 18, b: 30 };
+  const vis = cfg.series.filter(s => s.visible !== false);
+  let t0 = Infinity, t1 = -Infinity, lo = Infinity, hi = -Infinity;
+  cfg.series.forEach(s => s.t.forEach((t, i) => { if (t < t0) t0 = t; if (t > t1) t1 = t; }));
+  vis.forEach(s => s.v.forEach(v => { if (v == null) return; if (v < lo) lo = v; if (v > hi) hi = v; }));
+  if (!isFinite(lo)) { lo = 0; hi = 1; }
+  if (cfg.zero && lo > 0) lo = 0;
+  const pad = (hi - lo) * .06; lo -= lo === 0 ? 0 : pad; hi += pad;
+  const yt = niceTicks(lo, hi, 5); lo = Math.min(lo, yt[0]); hi = Math.max(hi, yt[yt.length - 1]);
+  const x = t => m.l + (t - t0) / (t1 - t0) * (W - m.l - m.r);
+  const y = v => m.t + (1 - (v - lo) / (hi - lo)) * (H - m.t - m.b);
+  const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": cfg.aria, height: H });
+
+  (cfg.bands || []).forEach(b => {
+    const r = svgEl("rect", { x: x(b.from), y: m.t, width: x(b.to) - x(b.from), height: H - m.t - m.b });
+    r.style.fill = "var(--shade)"; svg.append(r);
+    const tx = svgEl("text", { x: x(b.from) + 8, y: m.t + 13, class: "axis-label" }); tx.textContent = b.label; svg.append(tx);
+  });
+  yt.forEach(v => {
+    const g = svgEl("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), "stroke-width": 1 });
+    g.style.stroke = v === 0 ? "var(--muted)" : "var(--grid)"; svg.append(g);
+    const tx = svgEl("text", { x: m.l - 8, y: y(v) + 4, "text-anchor": "end" }); tx.textContent = cfg.fmt(v); svg.append(tx);
+  });
+  const stepH = (t1 - t0) > 36 * 3600e3 ? 6 : 3;
+  for (let t = Math.ceil(t0 / 3600e3 / stepH) * stepH * 3600e3; t <= t1; t += stepH * 3600e3) {
+    const midnight = new Date(t).getUTCHours() === 0;
+    const g = svgEl("line", { x1: x(t), x2: x(t), y1: m.t, y2: H - m.b, "stroke-width": 1 });
+    g.style.stroke = midnight ? "var(--line)" : "var(--grid)"; svg.append(g);
+    if (W < 560 && !midnight && stepH === 6 && new Date(t).getUTCHours() !== 12) continue;
+    const tx = svgEl("text", { x: x(t), y: H - m.b + 17, "text-anchor": "middle", class: midnight ? "axis-label" : "" });
+    tx.textContent = midnight ? dayShort(t) : hhmm(t); svg.append(tx);
+  }
+  const yl = svgEl("text", { x: m.l, y: 10, "text-anchor": "start", class: "axis-label" }); yl.textContent = cfg.unit; svg.append(yl);
+
+  vis.forEach(s => {
+    let d = "", pen = false;
+    s.t.forEach((t, i) => { const v = s.v[i]; if (v == null) { pen = false; return; } d += (pen ? "L" : "M") + x(t).toFixed(1) + " " + y(v).toFixed(1); pen = true; });
+    const p = svgEl("path", { d, fill: "none", "stroke-width": s.width || 2, "stroke-linejoin": "round", "stroke-linecap": "round" });
+    p.style.stroke = `var(${s.color})`; if (s.dash) p.setAttribute("stroke-dasharray", s.dash); svg.append(p);
+  });
+  if (cfg.marker) {
+    const mx = x(cfg.marker.t);
+    const g = svgEl("line", { x1: mx, x2: mx, y1: m.t, y2: H - m.b, "stroke-width": 1, "stroke-dasharray": "3 3" });
+    g.style.stroke = "var(--ink-2)"; svg.append(g);
+    const tx = svgEl("text", { x: mx - 6, y: m.t + 13, "text-anchor": "end", class: "marker-label" }); tx.textContent = cfg.marker.label; svg.append(tx);
+  }
+
+  // hover layer
+  const cross = svgEl("line", { y1: m.t, y2: H - m.b, "stroke-width": 1, visibility: "hidden" }); cross.style.stroke = "var(--ink-2)";
+  const dots = vis.map(s => { const c = svgEl("circle", { r: 4, "stroke-width": 2, visibility: "hidden" }); c.style.fill = `var(${s.color})`; c.style.stroke = "var(--panel)"; return c; });
+  svg.append(cross, ...dots);
+  const hit = svgEl("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }); svg.append(hit);
+  host.append(svg);
+  const tip = el("div", { class: "tip", hidden: "" }); host.append(tip);
+  const tol = cfg.snap || 15 * 60e3;
+  const move = ev => {
+    const r = svg.getBoundingClientRect(), px = (ev.clientX - r.left) * W / r.width;
+    const t = t0 + (px - m.l) / (W - m.l - m.r) * (t1 - t0);
+    let rows = "", any = false, tx = null;
+    vis.forEach((s, k) => {
+      let best = -1, bd = Infinity;
+      s.t.forEach((tt, i) => { const dd = Math.abs(tt - t); if (dd < bd && s.v[i] != null) { bd = dd; best = i; } });
+      if (best < 0 || bd > tol) { dots[k].setAttribute("visibility", "hidden"); return; }
+      any = true; tx = tx ?? s.t[best];
+      dots[k].setAttribute("cx", x(s.t[best])); dots[k].setAttribute("cy", y(s.v[best])); dots[k].setAttribute("visibility", "visible");
+      rows += `<div class="tip-row"><span><span class="key" style="border-top-color:var(${s.color})"></span>${s.label}</span><b>${cfg.tip(s.v[best])}</b></div>`;
+    });
+    if (!any) { leave(); return; }
+    cross.setAttribute("x1", x(tx)); cross.setAttribute("x2", x(tx)); cross.setAttribute("visibility", "visible");
+    tip.innerHTML = `<div class="tip-time">${dayShort(tx)}, ${hhmm(tx)}</div>` + rows; tip.hidden = false;
+    const left = x(tx) * r.width / W, tw = tip.offsetWidth;
+    tip.style.left = (left + 14 + tw > r.width ? left - tw - 14 : left + 14) + "px";
+    tip.style.top = "8px";
+  };
+  const leave = () => { tip.hidden = true; cross.setAttribute("visibility", "hidden"); dots.forEach(d => d.setAttribute("visibility", "hidden")); };
+  hit.addEventListener("pointermove", move); hit.addEventListener("pointerleave", leave);
+}
+
+function legend(host, series, onToggle) {
+  host.innerHTML = "";
+  series.forEach(s => {
+    const b = el("button", { type: "button", "aria-pressed": String(s.visible !== false) });
+    b.innerHTML = `<svg viewBox="0 0 22 8" aria-hidden="true"><line x1="1" x2="21" y1="4" y2="4" stroke-width="2.5" stroke-linecap="round" style="stroke:var(${s.color})" ${s.dash ? `stroke-dasharray="${s.dash}"` : ""}/></svg>${s.label}`;
+    b.addEventListener("click", () => { s.visible = s.visible === false; b.setAttribute("aria-pressed", String(s.visible)); onToggle(); });
+    host.append(b);
+  });
+}
+
+/* ---------- NSW chart ---------- */
+let nswMeasure = "price";
+const nswSeries = { price: null, demand: null };
+function nswSeriesFor(measure) {
+  if (!nswSeries[measure]) {
+    const src = DATA.nsw[measure];
+    nswSeries[measure] = ["actual", "hybrid", "aemo_pd", "naive", "arima"].map(k => ({ key: k, ...SERIES[k], ...src[k], visible: k !== "arima" }));
+  }
+  return nswSeries[measure];
+}
+function drawNSW() {
+  const s = nswSeriesFor(nswMeasure), u = UNIT[nswMeasure];
+  const tStart = Date.parse(DATA.tomorrow + "T00:00:00Z");
+  legend(document.getElementById("nsw-legend"), s, drawNSWChart);
+  drawNSWChart();
+  function drawNSWChart() {
+    lineChart(document.getElementById("nsw-chart"), {
+      series: s, fmt: u.f, tip: u.tip, unit: u.axis,
+      bands: [{ from: tStart, to: tStart + 23.5 * 3600e3, label: "Tomorrow (forecast)" }],
+      marker: { t: Date.parse(DATA.last_dispatch.replace(" ", "T") + "Z"), label: "Now" },
+      aria: `NSW ${nswMeasure} from yesterday to tomorrow, actual and forecasts`,
+    });
+  }
+}
+function setMeasure(m) {
+  nswMeasure = m;
+  document.getElementById("tgl-price").setAttribute("aria-pressed", String(m === "price"));
+  document.getElementById("tgl-demand").setAttribute("aria-pressed", String(m === "demand"));
+  drawNSW();
+}
+
+/* ---------- NSW 5-minute chart ---------- */
+let fiveMeasure = "price";
+function drawFive() {
+  const u = UNIT[fiveMeasure], src = DATA.now[fiveMeasure + "5"];
+  lineChart(document.getElementById("reg-chart"), {
+    series: [{ key: fiveMeasure, label: fiveMeasure === "price" ? "NSW price" : "NSW demand", color: "--s1", dash: "", width: 1.5, ...src }],
+    fmt: u.f, tip: u.tip, unit: u.axis, snap: 3 * 60e3, height: 260,
+    aria: `NSW five-minute ${fiveMeasure} today`,
+  });
+  document.getElementById("r-price").setAttribute("aria-pressed", String(fiveMeasure === "price"));
+  document.getElementById("r-demand").setAttribute("aria-pressed", String(fiveMeasure === "demand"));
+}
+
+/* ---------- tables ---------- */
+let tableMeasure = "price";
+function renderDetail() {
+  const src = DATA.nsw[tableMeasure], u = UNIT[tableMeasure];
+  const pdMap = new Map(src.aemo_pd.t.map((t, i) => [t, src.aemo_pd.v[i]]));
+  let html = `<thead><tr><th>Period</th><th>Temp °C</th><th>Hybrid</th><th>AEMO PD</th><th>Naive</th><th>ARIMA</th></tr></thead><tbody>`;
+  src.hybrid.t.forEach((t, i) => {
+    html += `<tr><td class="num">${hhmm(t)}</td><td>${src.temperature.v[i]?.toFixed(1) ?? "–"}</td><td>${u.f(src.hybrid.v[i])}</td><td>${u.f(pdMap.get(t))}</td><td>${u.f(src.naive.v[i])}</td><td>${u.f(src.arima.v[i])}</td></tr>`;
+  });
+  document.getElementById("det-table").innerHTML = html + "</tbody>";
+  document.getElementById("tt-price").setAttribute("aria-pressed", String(tableMeasure === "price"));
+  document.getElementById("tt-demand").setAttribute("aria-pressed", String(tableMeasure === "demand"));
+}
+
+function scoreTable(rows, cols) {
+  let html = `<div class="scroll"><table><thead><tr><th>Day</th>${cols.map(c => `<th>${SERIES[c].label.replace(" (ARIMA-LSTM)", "")}</th>`).join("")}</tr></thead><tbody>`;
+  rows.forEach(r => {
+    const vals = cols.map(c => r[c + "_RMSE"]); const best = Math.min(...vals.filter(v => v != null));
+    html += `<tr><td>${dayShort(Date.parse(r.date + "T00:00:00Z"))}</td>${vals.map(v => `<td class="${v === best ? "best" : ""}">${v == null ? "–" : v.toFixed(1)}</td>`).join("")}</tr>`;
+  });
+  return html + "</tbody></table></div>";
+}
+function renderRecord() {
+  const s = DATA.scores.price, host = document.getElementById("rec");
+  let html = `<h3 class="eyebrow" style="margin:0 0 6px">Issued the day before (this dashboard)</h3>`;
+  html += s.d1.length ? scoreTable(s.d1, ["hybrid", "aemo_pd", "naive", "arima"])
+    : `<div class="empty">The first day-ahead forecast is for ${dayLong(DATA.tomorrow)}. It is scored on the next run after AEMO publishes that day's prices.</div>`;
+  if (s.same_day.length) {
+    html += `<h3 class="eyebrow" style="margin:18px 0 6px">Issued on the day (earlier forecast mode)</h3>` + scoreTable(s.same_day, ["hybrid", "naive", "arima"]);
+  }
+  html += `<p class="small" style="margin:10px 0 0">Lower is better. ✓ marks the best model each day.</p>`;
+  host.innerHTML = html;
+}
+
+/* ---------- boot ---------- */
+renderMeta(); renderNow(); renderTomorrow(); renderFlows(); renderDetail(); renderRecord();
+drawNSW(); drawFive();
+document.getElementById("r-price").addEventListener("click", () => { fiveMeasure = "price"; drawFive(); });
+document.getElementById("r-demand").addEventListener("click", () => { fiveMeasure = "demand"; drawFive(); });
+document.getElementById("tgl-price").addEventListener("click", () => setMeasure("price"));
+document.getElementById("tgl-demand").addEventListener("click", () => setMeasure("demand"));
+document.getElementById("tt-price").addEventListener("click", () => { tableMeasure = "price"; renderDetail(); });
+document.getElementById("tt-demand").addEventListener("click", () => { tableMeasure = "demand"; renderDetail(); });
+let rz; new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(() => { drawNSW(); drawFive(); }, 120); }).observe(document.querySelector(".wrap"));
+</script>

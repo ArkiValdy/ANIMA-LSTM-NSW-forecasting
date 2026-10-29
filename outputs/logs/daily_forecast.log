@@ -1,0 +1,790 @@
+===== Mon 12/10/2026 10:07:03.72 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31156 rows (2025-01-01 00:00:00 .. 2026-10-12 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15576 rows (2025-01-01 00:00:00 .. 2026-10-11 23:00:00) -> temperature_hourly_live.csv
+2026-10-12 10:07:44.359751: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-12 10:07:46.580006: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-12 10:07:57.373496: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+[nemweb] dispatch: 110 intervals for 2026-10-12
+[nemweb] pre-dispatch run 202610120930: 2026-10-12 09:30:00 .. 2026-10-13 04:00:00
+[nemweb] nowcast: today 19/48 bins actual, 29 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-12 -> forecasting 2026-10-13
+[preprocessing] Dropped 1008 warm-up rows; 30240 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 7 days old)
+
+[forecast] price for 2026-10-13 ($/MWh), ARIMA order (5, 0, 4):
+          mean    min      max
+naive   4893.4   42.9  23200.0
+arima     92.9 -164.6    276.4
+hybrid  4966.7  110.7  23292.1
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-13.csv
+
+[forecast] data complete through 2026-10-12 -> forecasting 2026-10-13
+[preprocessing] Dropped 1008 warm-up rows; 30240 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 7 days old)
+
+[forecast] demand for 2026-10-13 (MW), ARIMA order (2, 1, 4):
+          mean     min      max
+naive   7439.6  5640.1  10059.1
+arima   7534.1  7140.8   7701.1
+hybrid  7823.3  6015.0  10515.6
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-13.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-13 (issued 2026-10-12T10:07:32)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Mon 12/10/2026 10:08:03.62 ===== 
+===== Mon 12/10/2026 21:00:00.56 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31156 rows (2025-01-01 00:00:00 .. 2026-10-12 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15576 rows (2025-01-01 00:00:00 .. 2026-10-11 23:00:00) -> temperature_hourly_live.csv
+2026-10-12 21:03:28.129499: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-12 21:03:31.085832: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-12 21:03:44.600971: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-12 21:03:51.161571: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 240 intervals for 2026-10-12
+[nemweb] pre-dispatch run 202610122000: 2026-10-12 20:00:00 .. 2026-10-14 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-12 -> forecasting 2026-10-13
+[preprocessing] Dropped 1008 warm-up rows; 30240 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 7 days old)
+
+[forecast] price for 2026-10-13 ($/MWh), ARIMA order (5, 0, 4):
+         mean    min      max
+naive   647.6   31.4  13016.9
+arima    88.4   32.1    170.8
+hybrid  722.9  118.1  13109.0
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-13.csv
+
+[forecast] data complete through 2026-10-12 -> forecasting 2026-10-13
+[preprocessing] Dropped 1008 warm-up rows; 30240 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 7 days old)
+
+[forecast] demand for 2026-10-13 (MW), ARIMA order (2, 1, 4):
+          mean     min      max
+naive   7298.7  5474.4   9831.4
+arima   7381.3  7017.2   7542.2
+hybrid  7692.7  5859.6  10297.4
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-13.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-13 (issued 2026-10-12T21:03:11)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Mon 12/10/2026 21:03:53.53 ===== 
+===== Tue 13/10/2026 21:00:02.36 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31204 rows (2025-01-01 00:00:00 .. 2026-10-13 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15600 rows (2025-01-01 00:00:00 .. 2026-10-12 23:00:00) -> temperature_hourly_live.csv
+2026-10-13 21:04:09.509915: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-13 21:04:11.531426: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-13 21:04:17.678673: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-13 21:04:26.969333: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+[nemweb] dispatch: 240 intervals for 2026-10-13
+[nemweb] pre-dispatch run 202610132000: 2026-10-13 20:00:00 .. 2026-10-15 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-13 -> forecasting 2026-10-14
+[preprocessing] Dropped 1008 warm-up rows; 30288 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 8 days old)
+
+[forecast] price for 2026-10-14 ($/MWh), ARIMA order (5, 0, 4):
+         mean    min    max
+naive   250.0  167.8  348.6
+arima   121.8   75.9  177.1
+hybrid  267.5  182.3  363.8
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-14.csv
+
+[forecast] data complete through 2026-10-13 -> forecasting 2026-10-14
+[preprocessing] Dropped 1008 warm-up rows; 30288 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 8 days old)
+
+[forecast] demand for 2026-10-14 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   7790.1  6656.1  8627.9
+arima   7628.0  7035.7  7865.6
+hybrid  7773.7  6461.4  8721.0
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-14.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-14 (issued 2026-10-13T21:03:57)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 40/48 actuals
+[record] 2026-10-14: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Tue 13/10/2026 21:04:33.17 ===== 
+===== Wed 14/10/2026 21:00:02.48 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31252 rows (2025-01-01 00:00:00 .. 2026-10-14 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15624 rows (2025-01-01 00:00:00 .. 2026-10-13 23:00:00) -> temperature_hourly_live.csv
+2026-10-14 21:04:05.917266: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-14 21:04:07.925148: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-14 21:04:14.068247: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-14 21:04:23.160206: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+[nemweb] dispatch: 240 intervals for 2026-10-14
+[nemweb] pre-dispatch run 202610142000: 2026-10-14 20:00:00 .. 2026-10-16 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-14 -> forecasting 2026-10-15
+[preprocessing] Dropped 1008 warm-up rows; 30336 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 9 days old)
+
+[forecast] price for 2026-10-15 ($/MWh), ARIMA order (5, 0, 4):
+         mean   min    max
+naive   131.5  74.8  195.1
+arima    93.7  63.4  126.8
+hybrid  113.1  50.8  179.6
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-15.csv
+
+[forecast] data complete through 2026-10-14 -> forecasting 2026-10-15
+[preprocessing] Dropped 1008 warm-up rows; 30336 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 9 days old)
+
+[forecast] demand for 2026-10-15 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6972.4  5126.4  8421.5
+arima   7133.0  6869.9  7253.6
+hybrid  6906.6  5221.2  8395.1
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-15.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-15 (issued 2026-10-14T21:03:52)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 40/48 actuals
+[record] 2026-10-15: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Wed 14/10/2026 21:04:29.81 ===== 
+===== Fri 16/10/2026 12:40:44.14 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31348 rows (2025-01-01 00:00:00 .. 2026-10-16 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15672 rows (2025-01-01 00:00:00 .. 2026-10-15 23:00:00) -> temperature_hourly_live.csv
+2026-10-16 12:44:52.735964: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-16 12:44:56.236400: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-16 12:45:07.880150: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-16 12:45:21.678555: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-16 12:45:35.662209: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 140 intervals for 2026-10-16
+[nemweb] pre-dispatch run 202610161200: 2026-10-16 12:00:00 .. 2026-10-17 04:00:00
+[nemweb] nowcast: today 24/48 bins actual, 24 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-16 -> forecasting 2026-10-17
+[preprocessing] Dropped 1008 warm-up rows; 30432 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 11 days old)
+
+[forecast] price for 2026-10-17 ($/MWh), ARIMA order (5, 0, 4):
+        mean   min    max
+naive   88.1   5.4  122.3
+arima   83.0  64.0  102.3
+hybrid  84.6  -1.4  119.9
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-17.csv
+
+[forecast] data complete through 2026-10-16 -> forecasting 2026-10-17
+[preprocessing] Dropped 1008 warm-up rows; 30432 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 11 days old)
+
+[forecast] demand for 2026-10-17 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6977.0  5208.3  8346.7
+arima   7019.0  6681.1  7172.5
+hybrid  6782.2  5160.7  8153.3
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-17.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-17 (issued 2026-10-16T12:44:34)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Fri 16/10/2026 12:45:39.46 ===== 
+===== Fri 16/10/2026 21:00:02.65 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31348 rows (2025-01-01 00:00:00 .. 2026-10-16 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15672 rows (2025-01-01 00:00:00 .. 2026-10-15 23:00:00) -> temperature_hourly_live.csv
+2026-10-16 21:02:59.976280: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-16 21:03:03.555600: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-16 21:03:13.588249: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-16 21:03:27.976416: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-16 21:03:37.460417: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 239 intervals for 2026-10-16
+[nemweb] pre-dispatch run 202610162000: 2026-10-16 20:00:00 .. 2026-10-18 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-16 -> forecasting 2026-10-17
+[preprocessing] Dropped 1008 warm-up rows; 30432 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 11 days old)
+
+[forecast] price for 2026-10-17 ($/MWh), ARIMA order (5, 0, 4):
+        mean   min    max
+naive   89.5  59.0  122.3
+arima   82.0  67.3   98.2
+hybrid  85.9  50.3  116.9
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-17.csv
+
+[forecast] data complete through 2026-10-16 -> forecasting 2026-10-17
+[preprocessing] Dropped 1008 warm-up rows; 30432 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 11 days old)
+
+[forecast] demand for 2026-10-17 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6973.7  5252.8  8283.4
+arima   7030.9  6751.6  7161.2
+hybrid  6774.6  5193.1  8092.5
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-17.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-17 (issued 2026-10-16T21:02:43)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Fri 16/10/2026 21:03:40.10 ===== 
+===== Sat 17/10/2026 21:00:02.39 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31396 rows (2025-01-01 00:00:00 .. 2026-10-17 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15696 rows (2025-01-01 00:00:00 .. 2026-10-16 23:00:00) -> temperature_hourly_live.csv
+2026-10-17 21:04:20.347686: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-17 21:04:23.207582: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-17 21:04:30.826222: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-17 21:04:40.504414: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-17 21:04:48.452705: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 240 intervals for 2026-10-17
+[nemweb] pre-dispatch run 202610172000: 2026-10-17 20:00:00 .. 2026-10-19 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-17 -> forecasting 2026-10-18
+[preprocessing] Dropped 1008 warm-up rows; 30480 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 12 days old)
+
+[forecast] price for 2026-10-18 ($/MWh), ARIMA order (5, 0, 4):
+        mean   min   max
+naive   66.3  15.0  90.0
+arima   78.1  63.0  92.4
+hybrid  56.3   2.7  83.2
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-18.csv
+
+[forecast] data complete through 2026-10-17 -> forecasting 2026-10-18
+[preprocessing] Dropped 1008 warm-up rows; 30480 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 12 days old)
+
+[forecast] demand for 2026-10-18 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6198.5  3999.9  7773.7
+arima   6410.7  6193.9  6616.1
+hybrid  6003.7  3934.6  7563.0
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-18.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-18 (issued 2026-10-17T21:04:05)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 40/48 actuals
+[record] 2026-10-18: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Sat 17/10/2026 21:04:50.86 ===== 
+===== Sun 18/10/2026 21:00:02.81 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31444 rows (2025-01-01 00:00:00 .. 2026-10-18 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15720 rows (2025-01-01 00:00:00 .. 2026-10-17 23:00:00) -> temperature_hourly_live.csv
+2026-10-18 21:04:57.839144: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-18 21:05:00.109361: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-18 21:05:06.716033: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-18 21:05:15.924441: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+[nemweb] dispatch: 240 intervals for 2026-10-18
+[nemweb] pre-dispatch run 202610182030: 2026-10-18 20:30:00 .. 2026-10-20 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-18 -> forecasting 2026-10-19
+[preprocessing] Dropped 1008 warm-up rows; 30528 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 13 days old)
+
+[forecast] price for 2026-10-19 ($/MWh), ARIMA order (5, 0, 4):
+        mean   min    max
+naive   74.6  13.6  110.4
+arima   79.0  69.9   87.7
+hybrid  56.9   0.1   90.4
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-19.csv
+
+[forecast] data complete through 2026-10-18 -> forecasting 2026-10-19
+[preprocessing] Dropped 1008 warm-up rows; 30528 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 13 days old)
+
+[forecast] demand for 2026-10-19 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   5920.5  3569.3  7765.2
+arima   6172.0  6011.5  6463.1
+hybrid  5486.8  3303.2  7272.4
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-19.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-19 (issued 2026-10-18T21:04:44)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 48/48 actuals
+[record] 2026-10-18: 40/48 actuals
+[record] 2026-10-19: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Sun 18/10/2026 21:05:22.91 ===== 
+===== Mon 19/10/2026 21:00:02.40 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31492 rows (2025-01-01 00:00:00 .. 2026-10-19 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15744 rows (2025-01-01 00:00:00 .. 2026-10-18 23:00:00) -> temperature_hourly_live.csv
+2026-10-19 21:03:56.975768: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-19 21:03:59.113836: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-19 21:04:05.399575: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-19 21:04:14.822107: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+[nemweb] dispatch: 240 intervals for 2026-10-19
+[nemweb] pre-dispatch run 202610192000: 2026-10-19 20:00:00 .. 2026-10-21 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-19 -> forecasting 2026-10-20
+[preprocessing] Dropped 1008 warm-up rows; 30576 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 14 days old)
+
+[forecast] price for 2026-10-20 ($/MWh), ARIMA order (5, 0, 4):
+         mean   min    max
+naive   105.5  80.7  129.6
+arima    83.6  74.6   95.1
+hybrid  101.3  72.9  128.4
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-20.csv
+
+[forecast] data complete through 2026-10-19 -> forecasting 2026-10-20
+[preprocessing] Dropped 1008 warm-up rows; 30576 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 14 days old)
+
+[forecast] demand for 2026-10-20 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6495.7  4630.2  8266.5
+arima   6607.7  6434.5  6788.6
+hybrid  6145.8  4330.9  7961.0
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-20.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-20 (issued 2026-10-19T21:03:43)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 48/48 actuals
+[record] 2026-10-18: 48/48 actuals
+[record] 2026-10-19: 40/48 actuals
+[record] 2026-10-20: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Mon 19/10/2026 21:04:21.15 ===== 
+===== Tue 20/10/2026 21:00:02.75 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31540 rows (2025-01-01 00:00:00 .. 2026-10-20 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15768 rows (2025-01-01 00:00:00 .. 2026-10-19 23:00:00) -> temperature_hourly_live.csv
+2026-10-20 21:06:54.063372: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-20 21:06:57.498896: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-20 21:07:18.606182: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-20 21:07:38.708659: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-20 21:07:45.005761: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-20 21:07:57.610913: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 239 intervals for 2026-10-20
+[nemweb] pre-dispatch run 202610202030: 2026-10-20 20:30:00 .. 2026-10-22 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-20 -> forecasting 2026-10-21
+[preprocessing] Dropped 1008 warm-up rows; 30624 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 15 days old)
+
+[forecast] price for 2026-10-21 ($/MWh), ARIMA order (5, 0, 4):
+         mean   min    max
+naive   104.6  -7.6  185.6
+arima    87.1  77.9  115.3
+hybrid  113.4   3.1  194.7
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-21.csv
+
+[forecast] data complete through 2026-10-20 -> forecasting 2026-10-21
+[preprocessing] Dropped 1008 warm-up rows; 30624 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 15 days old)
+
+[forecast] demand for 2026-10-21 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6443.5  4431.8  8281.0
+arima   6625.6  6446.5  6852.4
+hybrid  6885.3  4910.3  8863.2
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-21.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-21 (issued 2026-10-20T21:06:30)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 48/48 actuals
+[record] 2026-10-18: 48/48 actuals
+[record] 2026-10-19: 48/48 actuals
+[record] 2026-10-20: 40/48 actuals
+[record] 2026-10-21: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Tue 20/10/2026 21:08:00.92 ===== 
+===== Wed 21/10/2026 21:32:14.99 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31588 rows (2025-01-01 00:00:00 .. 2026-10-21 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15792 rows (2025-01-01 00:00:00 .. 2026-10-20 23:00:00) -> temperature_hourly_live.csv
+2026-10-21 22:32:05.174134: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-21 22:32:07.288735: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-21 22:32:20.349592: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-21 22:32:27.991904: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 247 intervals for 2026-10-21
+[nemweb] pre-dispatch run 202610212100: 2026-10-21 21:00:00 .. 2026-10-23 04:00:00
+[nemweb] nowcast: today 42/48 bins actual, 6 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-21 -> forecasting 2026-10-22
+[preprocessing] Dropped 1008 warm-up rows; 30672 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 16 days old)
+
+[forecast] price for 2026-10-22 ($/MWh), ARIMA order (5, 0, 4):
+         mean    min    max
+naive   130.4   98.7  214.5
+arima    91.3   81.7  102.8
+hybrid  158.2  122.3  233.6
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-22.csv
+
+[forecast] data complete through 2026-10-21 -> forecasting 2026-10-22
+[preprocessing] Dropped 1008 warm-up rows; 30672 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 16 days old)
+
+[forecast] demand for 2026-10-22 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6741.0  4978.6  8420.5
+arima   6838.0  6626.1  6933.1
+hybrid  7239.3  5517.6  9050.5
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-22.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-22 (issued 2026-10-21T22:31:48)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 48/48 actuals
+[record] 2026-10-18: 48/48 actuals
+[record] 2026-10-19: 48/48 actuals
+[record] 2026-10-20: 48/48 actuals
+[record] 2026-10-21: 41/48 actuals
+[record] 2026-10-22: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+===== done Wed 21/10/2026 22:32:30.17 ===== 
+===== Thu 22/10/2026 21:00:02.32 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31636 rows (2025-01-01 00:00:00 .. 2026-10-22 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15816 rows (2025-01-01 00:00:00 .. 2026-10-21 23:00:00) -> temperature_hourly_live.csv
+2026-10-22 21:05:39.929959: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-22 21:05:43.294766: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-22 21:05:46.300093: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-22 21:05:58.154150: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-22 21:06:09.720033: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 240 intervals for 2026-10-22
+[nemweb] pre-dispatch run 202610222030: 2026-10-22 20:30:00 .. 2026-10-24 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-22 -> forecasting 2026-10-23
+[preprocessing] Dropped 1008 warm-up rows; 30720 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 17 days old)
+
+[forecast] price for 2026-10-23 ($/MWh), ARIMA order (5, 0, 4):
+         mean    min    max
+naive   120.3   83.1  161.1
+arima    87.2   80.9  102.2
+hybrid  150.7  124.2  183.3
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-23.csv
+
+[forecast] data complete through 2026-10-22 -> forecasting 2026-10-23
+[preprocessing] Dropped 1008 warm-up rows; 30720 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 17 days old)
+
+[forecast] demand for 2026-10-23 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   7318.7  6488.8  8582.3
+arima   7256.6  6866.8  7424.9
+hybrid  7859.9  6867.0  9264.8
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-23.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-23 (issued 2026-10-22T21:05:21)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 48/48 actuals
+[record] 2026-10-18: 48/48 actuals
+[record] 2026-10-19: 48/48 actuals
+[record] 2026-10-20: 48/48 actuals
+[record] 2026-10-21: 48/48 actuals
+[record] 2026-10-22: 40/48 actuals
+[record] 2026-10-23: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\live.html
+===== done Thu 22/10/2026 21:06:13.00 ===== 
+===== Fri 23/10/2026 21:00:02.12 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31684 rows (2025-01-01 00:00:00 .. 2026-10-23 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15840 rows (2025-01-01 00:00:00 .. 2026-10-22 23:00:00) -> temperature_hourly_live.csv
+2026-10-23 21:05:34.479154: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-23 21:05:38.177419: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-23 21:05:41.988673: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-23 21:05:53.992761: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-23 21:06:05.163467: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 240 intervals for 2026-10-23
+[nemweb] pre-dispatch run 202610232030: 2026-10-23 20:30:00 .. 2026-10-25 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-23 -> forecasting 2026-10-24
+[preprocessing] Dropped 1008 warm-up rows; 30768 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 18 days old)
+
+[forecast] price for 2026-10-24 ($/MWh), ARIMA order (5, 0, 4):
+         mean   min    max
+naive   113.8  85.8  156.5
+arima    88.3  81.9  110.6
+hybrid  124.4  94.0  174.1
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-24.csv
+
+[forecast] data complete through 2026-10-23 -> forecasting 2026-10-24
+[preprocessing] Dropped 1008 warm-up rows; 30768 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 18 days old)
+
+[forecast] demand for 2026-10-24 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   7150.1  6083.9  8256.2
+arima   7179.2  6858.3  7322.8
+hybrid  7230.2  6226.7  8360.0
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-24.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-24 (issued 2026-10-23T21:05:16)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 48/48 actuals
+[record] 2026-10-18: 48/48 actuals
+[record] 2026-10-19: 48/48 actuals
+[record] 2026-10-20: 48/48 actuals
+[record] 2026-10-21: 48/48 actuals
+[record] 2026-10-22: 48/48 actuals
+[record] 2026-10-23: 40/48 actuals
+[record] 2026-10-24: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\live.html
+===== done Fri 23/10/2026 21:06:08.56 ===== 
+===== Sun 25/10/2026 11:19:43.35 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31780 rows (2025-01-01 00:00:00 .. 2026-10-25 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15888 rows (2025-01-01 00:00:00 .. 2026-10-24 23:00:00) -> temperature_hourly_live.csv
+2026-10-25 11:22:05.427444: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-25 11:22:07.739693: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-25 11:22:10.642130: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-25 11:32:24.918623: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-25 22:12:04.640377: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+^C===== Sun 25/10/2026 22:18:03.62 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31780 rows (2025-01-01 00:00:00 .. 2026-10-25 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15888 rows (2025-01-01 00:00:00 .. 2026-10-24 23:00:00) -> temperature_hourly_live.csv
+2026-10-25 22:21:15.201226: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-25 22:21:18.159934: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-25 22:21:21.464089: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-25 22:21:30.813290: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-25 22:21:37.360827: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 256 intervals for 2026-10-25
+[nemweb] pre-dispatch run 202610252130: 2026-10-25 21:30:00 .. 2026-10-27 04:00:00
+[nemweb] nowcast: today 43/48 bins actual, 5 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-25 -> forecasting 2026-10-26
+[preprocessing] Dropped 1008 warm-up rows; 30864 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 20 days old)
+
+[forecast] price for 2026-10-26 ($/MWh), ARIMA order (5, 0, 4):
+         mean   min    max
+naive    82.0  44.8  123.1
+arima    81.5  78.6   85.0
+hybrid  104.7  65.3  140.4
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-26.csv
+
+[forecast] data complete through 2026-10-25 -> forecasting 2026-10-26
+[preprocessing] Dropped 1008 warm-up rows; 30864 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 20 days old)
+
+[forecast] demand for 2026-10-26 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6827.8  5109.6  9107.0
+arima   6853.9  6463.9  7067.7
+hybrid  7172.3  5476.1  9588.3
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-26.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-26 (issued 2026-10-25T22:20:46)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 48/48 actuals
+[record] 2026-10-18: 48/48 actuals
+[record] 2026-10-19: 48/48 actuals
+[record] 2026-10-20: 48/48 actuals
+[record] 2026-10-21: 48/48 actuals
+[record] 2026-10-22: 48/48 actuals
+[record] 2026-10-23: 48/48 actuals
+[record] 2026-10-24: 48/48 actuals
+[record] 2026-10-26: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\live.html
+===== done Sun 25/10/2026 22:21:39.30 ===== 
+===== Tue 27/10/2026 21:00:02.64 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31876 rows (2025-01-01 00:00:00 .. 2026-10-27 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15936 rows (2025-01-01 00:00:00 .. 2026-10-26 23:00:00) -> temperature_hourly_live.csv
+2026-10-27 21:06:09.851838: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-27 21:06:13.022384: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-27 21:06:17.151557: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+2026-10-27 21:06:29.331003: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-27 21:06:38.372743: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_15}}
+[nemweb] dispatch: 240 intervals for 2026-10-27
+[nemweb] pre-dispatch run 202610272030: 2026-10-27 20:30:00 .. 2026-10-29 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-27 -> forecasting 2026-10-28
+[preprocessing] Dropped 1008 warm-up rows; 30960 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 22 days old)
+
+[forecast] price for 2026-10-28 ($/MWh), ARIMA order (5, 0, 4):
+         mean   min    max
+naive   106.3  63.5  154.0
+arima    88.1  83.1  103.0
+hybrid  114.0  69.3  156.5
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-28.csv
+
+[forecast] data complete through 2026-10-27 -> forecasting 2026-10-28
+[preprocessing] Dropped 1008 warm-up rows; 30960 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 22 days old)
+
+[forecast] demand for 2026-10-28 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6640.1  4749.0  8282.5
+arima   6749.2  6545.2  6855.8
+hybrid  7063.3  5152.2  8821.6
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-28.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-28 (issued 2026-10-27T21:05:52)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 48/48 actuals
+[record] 2026-10-18: 48/48 actuals
+[record] 2026-10-19: 48/48 actuals
+[record] 2026-10-20: 48/48 actuals
+[record] 2026-10-21: 48/48 actuals
+[record] 2026-10-22: 48/48 actuals
+[record] 2026-10-23: 48/48 actuals
+[record] 2026-10-24: 48/48 actuals
+[record] 2026-10-26: 48/48 actuals
+[record] 2026-10-28: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\live.html
+===== done Tue 27/10/2026 21:06:42.71 ===== 
+===== Wed 28/10/2026 21:00:02.52 ===== 
+  [skip] exists: PRICE_AND_DEMAND_202607_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202608_NSW1.csv
+  [skip] exists: PRICE_AND_DEMAND_202609_NSW1.csv
+  [get ] 202610
+[live] price/demand: 31924 rows (2025-01-01 00:00:00 .. 2026-10-28 00:00:00) -> price_demand_30min_live.csv
+[live] temperature:  15960 rows (2025-01-01 00:00:00 .. 2026-10-27 23:00:00) -> temperature_hourly_live.csv
+2026-10-28 21:00:48.769259: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+2026-10-28 21:00:51.774797: E tensorflow/core/util/util.cc:131] oneDNN supports DT_INT32 only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+2026-10-28 21:01:05.835813: E tensorflow/core/framework/node_def_util.cc:680] NodeDef mentions attribute use_unbounded_threadpool which is not in the op definition: Op<name=MapDataset; signature=input_dataset:variant, other_arguments: -> handle:variant; attr=f:func; attr=Targuments:list(type),min=0; attr=output_types:list(type),min=1; attr=output_shapes:list(shape),min=1; attr=use_inter_op_parallelism:bool,default=true; attr=preserve_cardinality:bool,default=false; attr=force_synchronous:bool,default=false; attr=metadata:string,default=""> This may be expected if your graph generating binary is newer  than this binary. Unknown attributes will be ignored. NodeDef: {{node ParallelMapDatasetV2/_16}}
+[nemweb] dispatch: 240 intervals for 2026-10-28
+[nemweb] pre-dispatch run 202610282000: 2026-10-28 20:00:00 .. 2026-10-30 04:00:00
+[nemweb] nowcast: today 41/48 bins actual, 7 from pre-dispatch -> C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\price_demand_nowcast.csv
+
+[forecast] data complete through 2026-10-28 -> forecasting 2026-10-29
+[preprocessing] Dropped 1008 warm-up rows; 31008 remain.
+[forecast] ARIMA order (5, 0, 4) (cached, 23 days old)
+
+[forecast] price for 2026-10-29 ($/MWh), ARIMA order (5, 0, 4):
+         mean   min    max
+naive   100.5  46.2  152.8
+arima    85.2  82.0  107.9
+hybrid  105.7  46.9  154.1
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_price_2026-10-29.csv
+
+[forecast] data complete through 2026-10-28 -> forecasting 2026-10-29
+[preprocessing] Dropped 1008 warm-up rows; 31008 remain.
+[forecast] ARIMA order (2, 1, 4) (cached, 23 days old)
+
+[forecast] demand for 2026-10-29 (MW), ARIMA order (2, 1, 4):
+          mean     min     max
+naive   6395.3  4242.1  8207.2
+arima   6634.6  6462.4  6937.7
+hybrid  6580.2  4404.7  8494.1
+[forecast] saved C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\forecast_d1\forecast_demand_2026-10-29.csv
+[dashboard] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\dashboard\index.html
+[record] predictions for 2026-10-29 (issued 2026-10-28T21:00:27)
+[record] 2026-10-10: 48/48 actuals
+[record] 2026-10-13: 48/48 actuals
+[record] 2026-10-14: 48/48 actuals
+[record] 2026-10-15: 48/48 actuals
+[record] 2026-10-17: 48/48 actuals
+[record] 2026-10-18: 48/48 actuals
+[record] 2026-10-19: 48/48 actuals
+[record] 2026-10-20: 48/48 actuals
+[record] 2026-10-21: 48/48 actuals
+[record] 2026-10-22: 48/48 actuals
+[record] 2026-10-23: 48/48 actuals
+[record] 2026-10-24: 48/48 actuals
+[record] 2026-10-26: 48/48 actuals
+[record] 2026-10-28: 40/48 actuals
+[record] 2026-10-29: 0/48 actuals
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\outputs\live_predicted.csv
+[record] wrote C:\Users\arkiv\Desktop\ANIMA+LSTM model\live.html
+===== done Wed 28/10/2026 21:01:17.04 ===== 
